@@ -135,11 +135,14 @@ _(Finally!)_
 
 ## Step 6. Install the old version of the application
 
+- If you have Twitter/X already installed on your mobile device - uninstall it.
 - [Download](https://github.com/kawaiizenbo/AppManager) **AppManager**, extract the downloaded archive and run `AppManager.exe`.
 - Connect your mobile device to your Windows machine via cable.
 - In the `AppManager` click on **Install new** button and select the IPA file you downloaded from iTunes.\
   <img src="https://github.com/justbearcause/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/blob/main/Screenshots/AppManager-19.jpg?raw=true" width="400" />
-- AppManager will transfer the file to your device and perform the installation. This process isn't fast, wait for the success message to appear in the log.
+- AppManager will transfer the file to your device and perform the installation. This process isn't fast, wait for the success message to appear in the log.\
+  <img src="https://github.com/justbearcause/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/blob/main/Screenshots/iPhone-installing.PNG?raw=true" width="400" />
 - Now your old version of Twitter app is installed and ready to use. **Congratulations!**
+    <img src="https://github.com/justbearcause/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/blob/main/Screenshots/iPhone-app1.PNG?raw=true" width="400" /><img src="https://github.com/justbearcause/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/blob/main/Screenshots/iPhone-app2.PNG?raw=true" width="400" />
 
 _If you want to try another version, you should restart from [Step 5. Download the old version of the application](#step-5-download-the-old-version-of-the-application)._
