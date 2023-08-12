@@ -66,33 +66,33 @@ This guide is based on [How to Downgrade Apps on AppStore with iTunes 12.6.5 & C
   <img src="https://github.com/justbearcause/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/blob/main/Screenshots/iTunes-1.jpg?raw=true" width="400" />\
   <img src="https://github.com/justbearcause/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/blob/main/Screenshots/iTunes-2.jpg?raw=true" width="400" />
 - Open App Store.\
-  <img src="https://github.com/justbearcause/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/blob/main/Screenshots/iTunes-3.jpg?raw=true" width="400" />
+  <img src="https://github.com/justbearcause/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/blob/main/Screenshots/iTunes-3.jpg?raw=true" width="600" />
 - Scroll down and open **Top Free Apps** section.\
-  <img src="https://github.com/justbearcause/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/blob/main/Screenshots/iTunes-4.jpg?raw=true" width="400" />
+  <img src="https://github.com/justbearcause/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/blob/main/Screenshots/iTunes-4.jpg?raw=true" width="600" />
 - Scroll down until you find **X** (Twitter) and click on its icon.\
-  <img src="https://github.com/justbearcause/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/blob/main/Screenshots/iTunes-5.jpg?raw=true" width="400" />
+  <img src="https://github.com/justbearcause/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/blob/main/Screenshots/iTunes-5.jpg?raw=true" width="600" />
   
 ### Step 3.3. Enable SSL Proxying
 - In iTunes, press **Download** button.
   iTunes will start a download of the recent version of X. **This is not the version we want**, all we need now is Charles to catch the request iTunes makes when it starts a download.\
-  <img src="https://github.com/justbearcause/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/blob/main/Screenshots/iTunes-6.jpg?raw=true" width="400" />
+  <img src="https://github.com/justbearcause/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/blob/main/Screenshots/iTunes-6.jpg?raw=true" width="600" />
 - Now select the download in the popup and press **Delete** key on the keyboard twice.\
-  <img src="https://github.com/justbearcause/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/blob/main/Screenshots/iTunes-7.jpg?raw=true" width="400" />
+  <img src="https://github.com/justbearcause/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/blob/main/Screenshots/iTunes-7.jpg?raw=true" width="600" />
 - Now switch to **Charles**. On the left side of the Charles window you'll see a list of domains.
 - Find a domain that has a form of `p**-buy.itunes.apple.com`, where **`**`** is two random numbers.
 - Right-click on it and select **Enable SSL Proxying**, then clear the list.\
-  <img src="https://github.com/justbearcause/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/blob/main/Screenshots/Charles-8.jpg?raw=true" width="400" />
+  <img src="https://github.com/justbearcause/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/blob/main/Screenshots/Charles-8.jpg?raw=true" width="600" />
 
 ### Step 3.4. Enable a breakpoint
 - We need to download the app again. If you go back to iTunes, you will likely see that Download button is greyed out. If this is the case, try refreshing the page by pressing `Ctrl+R`. If it didn't help, check if the X app is present in the **Library** tab. If it is, select it, press **Delete** key on the keyboard and confirm the deletion, then go back to the **AppStore** tab.
 - Press the **Download** button again and cancel the download like you did in the previous step.
 - Now switch to **Charles**.
 - On the left side of the Charles window you'll see a list of domains. Find an entry that has a form of `p**-buy.itunes.apple.com` and expand it until you see a `buyProduct` element. Select it and then press the pencil icon on the toolbar.\
-  <img src="https://github.com/justbearcause/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/blob/main/Screenshots/Charles-9.jpg?raw=true" width="400" />
+  <img src="https://github.com/justbearcause/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/blob/main/Screenshots/Charles-9.jpg?raw=true" width="600" />
 - A second `buyProduct` element should appear in the tree. Click **Execute** button on the bottom right.\
-  <img src="https://github.com/justbearcause/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/blob/main/Screenshots/Charles-10.jpg?raw=true" width="400" />
+  <img src="https://github.com/justbearcause/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/blob/main/Screenshots/Charles-10.jpg?raw=true" width="600" />
 - A third `buyProduct` element should appear in the tree. Right click on it and select **Breakpoints**.\
-  <img src="https://github.com/justbearcause/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/blob/main/Screenshots/Charles-11.jpg?raw=true" width="400" />
+  <img src="https://github.com/justbearcause/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/blob/main/Screenshots/Charles-11.jpg?raw=true" width="600" />
 - Clear the list again by pressing the first icon on the toolbar.
 
 ***
@@ -101,11 +101,11 @@ This guide is based on [How to Downgrade Apps on AppStore with iTunes 12.6.5 & C
 - We need to download the app again. Go to **iTunes** and refresh the page, like you did earlier.
 - Press the Download button again, but this time you **don't** have to stop and delete the download.
 - Go back to **Charles**. Now you should see that Charles catched and paused the request made by iTunes. Press **Execute**.\
-  <img src="https://github.com/justbearcause/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/blob/main/Screenshots/Charles-12.jpg?raw=true" width="400" />
+  <img src="https://github.com/justbearcause/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/blob/main/Screenshots/Charles-12.jpg?raw=true" width="600" />
 - Now Charles should show you a response it got from the server. Go to **Edit Response** tab (on the top), then **XML Text** tab (on then bottom).\
-  <img src="https://github.com/justbearcause/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/blob/main/Screenshots/Charles-13.jpg?raw=true" width="400" />
+  <img src="https://github.com/justbearcause/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/blob/main/Screenshots/Charles-13.jpg?raw=true" width="600" />
 - Scroll the content area until you find a key named `softwareVersionExternalIdentifiers`. Select an array that follows the key and copy it to the clipboard by pressing `Ctrl+C` then press the **Abort** button.\
-  <img src="https://github.com/justbearcause/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/blob/main/Screenshots/Charles-14.jpg?raw=true" width="400" />
+  <img src="https://github.com/justbearcause/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/blob/main/Screenshots/Charles-14.jpg?raw=true" width="600" />
 - Open Notepad or any other text editor and paste the text from the clipboard. It's the full list of application version IDs that iTunes is aware of.\
   <img src="https://github.com/justbearcause/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/blob/main/Screenshots/Notepad-15.jpg?raw=true" width="400" />
 - Go back to **iTunes**. If you see an ongoing operation on top of the window, click the **x** button and then refresh the page like before.\
@@ -123,15 +123,15 @@ _(Finally!)_
 - Press the Download button again,  but this time you **don't** have to stop and delete the download.
 - Go back to **Charles**. Now you should see that Charles catched and paused the request made by iTunes. Go to **Edit Request** tab (on the top), then **XML Text** (on the bottom).
 - Replace the ID after the `AppExtVrsId` key to the one you choose (e.g. `852780561`) and then press **Execute**.\
-  <img src="https://github.com/justbearcause/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/blob/main/Screenshots/Charles-16.jpg?raw=true" width="400" />
+  <img src="https://github.com/justbearcause/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/blob/main/Screenshots/Charles-16.jpg?raw=true" width="600" />
 - Now Charles should show you a response it got from the server. We **don't** have to modify a response, so just press **Execute** again.\
-  <img src="https://github.com/justbearcause/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/blob/main/Screenshots/Charles-17.jpg?raw=true" width="400" />
+  <img src="https://github.com/justbearcause/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/blob/main/Screenshots/Charles-17.jpg?raw=true" width="600" />
 - Now iTunes should download an old version of the application.\
   <img src="https://github.com/justbearcause/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/blob/main/Screenshots/iTunes-22.jpg?raw=true" width="400" />
 - Wait until download is finished, then open the following folder:\
   `C:\Users\<YOUR USER>\Music\iTunes\iTunes Media\Mobile Applications`
   In this folder you should find the downloaded application with the human-readable versions in its name.\
-    <img src="https://github.com/justbearcause/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/blob/main/Screenshots/Explorer-18.jpg?raw=true" width="400" />
+    <img src="https://github.com/justbearcause/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/blob/main/Screenshots/Explorer-18.jpg?raw=true" width="600" />
 
 ## Step 6. Install the old version of the application
 
