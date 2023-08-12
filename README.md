@@ -1,158 +1,144 @@
-# [Guide] How to Downgrade Apps on AppStore with iTunes 12.6.5 & Charles Proxy (no Jailbreak).
+# [Guide] How to Downgrade Twitter app on an iPhone or iPad (no Jailbreak).
 
-_If you think this guide is useful, considering support me via [Paypal](https://www.paypal.com/paypalme/qnblackcat) <img src="https://img.shields.io/badge/-lightgrey?style=social&logo=paypal" alt="Badge">!_
+This guide is based on [How to Downgrade Apps on AppStore with iTunes 12.6.5 & Charles Proxy](https://github.com/qnblackcat/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy) by [@qnblackcat](https://github.com/qnblackcat)
 
 # Table of Content
 * [I. Notes](#i-notes)
-* [II. Requirements](#ii-requirements)
+* [II. Prerequisites](#ii-prerequisites)
 * [III. Getting Started](#iii-getting-started)
-   * [Step 1. Preparing](#step-1-preparing)
-   * [Step 2. Install Charles Root Certificate](#step-2-install-charles-root-certificate)
-   * [Step 3. Create the Breakpoint](#step-3-create-the-breakpoint)
-   * [Step 4. Get the old version of the appplication (IPA)](#step-4-get-the-old-version-of-the-appplication-ipa)
-   * [Step 5. Install the IPA](#step-5-install-the-ipa)
-* [IV. FAQ](#iv-faq)
-
+   * [Step 1. Set up iTunes](#step-1-set-up-itunes)
+   * [Step 2. Set up Charles and installing Charles Root Certificate](#step-2-set-up-charles-and-installing-charles-root-certificate)
+   * [Step 3. Create a breakpoint](#step-3-create-a-breakpoint)
+   * [Step 4. Find the old version of the application](#step-4-find-the-old-version-of-the-application)
+   * [Step 5. Download the old version of the application](#step-5-download-the-old-version-of-the-application)
+   * [Step 6. Install the old version of the application](#step-6-install-the-old-version-of-the-application)
 
 # I. Notes
 - **iTunes 12.6.5 only works on Windows**. Apple killed iTunes 12.6.5 on macOS. Even if you manage to get iTunes 12.6.5 on your Mac, the download feature will not work.
-- The Guide seems complicated, but it's very easy to follow. Plus, you only need to do Step 1, 2, and 3 once (There are 5 steps in total).
+- The Guide seems complicated, but it's very easy to follow. Plus, you only need to do Step 1, 2, and 3 once (There are 6 steps in total).
 - Jailbreak is **NOT** needed. Since the iPA comes directly from iTunes, it's encrypted and can be installed without Sideload. The IPA is 100% legit!
-- You can get any version of any apps, as long as that version is still **available** on AppStore.
+- You can get any version of any app, not just Twitter, as long as that version is still **available** on AppStore.
+
 ***
 
-# II. Requirements
-- **iTunes 12.6.5** - the latest version of iTunes that supports download apps. Download: Apple iTunes 12.6.5.3 - [32bit](https://secure-appldnld.apple.com/itunes12/091-87820-20180912-69177170-B085-11E8-B6AB-C1D03409AD2A5/iTunesSetup.exe) | [64bit](https://secure-appldnld.apple.com/itunes12/091-87819-20180912-69177170-B085-11E8-B6AB-C1D03409AD2A6/iTunes64Setup.exe) / [(backup)](https://27man-my.sharepoint.com/:u:/g/personal/qn____27man_onmicrosoft_com/EeTCq3PxQGxEt0HH4CWb9loB_poQsJFiqgxoqlKGUPXR2Q?e=BOwGm2).
+# II. Prerequisites
 - **A Windows machine**: Windows XP/7/10/11 are supported.
-- **Charles Proxy**: I use version 4.2.7 but I don't think it matters (No need to _crack_ Charles Proxy). [Download here](https://www.charlesproxy.com/assets/release/4.2.7/charles-proxy-4.2.7-win64.msi)/ [back up](https://www.dropbox.com/s/nrp4obp0ctcwn9e/Charles%20Proxy%204.2.7.rar?dl=0)
-- **An Apple ID for iTunes**: Use a spare ID if you like. Keep in mind that if you switch to another ID, you'll need to re-do the process from [Step 3](#step-3-create-the-breakpoint).
+- A **cable** to connect your mobile device to a PC.
+- An **Apple ID** account for iTunes. The account should be the same as the account you're using on your mobile device.
+
 ***
 
 # III. Getting Started
-## Step 1. Preparing
-- Nothing special about Charles Proxy so I'll focus on iTunes. 
-- After you install iTunes successfully, go to **`Edit > Preferences > Avanced`** > Untick **`Check for new software updates automatically`** to prevent iTunes from asking for update.
-- If you get an error about **Library.itl** when opening iTunes: Go to **`C:\Users\Username\My Music\iTunes\`** and delete the existed **Library.itl**
-- Login to iTunes with your prepared Apple ID: **`Account > Sign-in`**.
-- The **`Build version number`** (or `Build Number`) of the version you want to downgrade: 
-  - Method 1: You can get the `Build version number` of most apps on AppStore from [Tool Lantency](https://tools.lancely.tech/apple/app-search).
-![Tool Lancety](https://raw.githubusercontent.com/qnblackcat/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/main/Screenshots/IMG_1823.PNG)
-  - Method 2: Ask a jailbroken user who has AppStore++ installed get the `Build version number` for you.
-  - Method 3: Look at the `buyProduct` content and search for `softwareVersionExternalIdentifier`, the last line is the latest version, keep trying until you succeed.
-  - Method 4: Almost the same as method 3. See [here](https://github.com/qnblackcat/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/issues/8#issuecomment-1272240225).
+## Step 1. Set up iTunes
+- If you already have a newer version of iTunes installed, uninstall it.
+- Download and install iTunes 12.6.5.3 - [32bit](https://secure-appldnld.apple.com/itunes12/091-87820-20180912-69177170-B085-11E8-B6AB-C1D03409AD2A5/iTunesSetup.exe) | [64bit](https://secure-appldnld.apple.com/itunes12/091-87819-20180912-69177170-B085-11E8-B6AB-C1D03409AD2A6/iTunes64Setup.exe)
+- After you install iTunes successfully, go to **Edit > Preferences > Advanced** and Untick **Check for new software updates automatically** to prevent iTunes from asking for update.
+- If you get an error about **Library.itl** when opening iTunes: Go to `C:\Users\Username\My Music\iTunes\` and delete the existing `Library.itl` file.
+- Login to iTunes with your prepared Apple ID: **Account > Sign-in**.
+
 ***
 
+## Step 2. Set up Charles and installing Charles Root Certificate
+- [Download](https://www.charlesproxy.com/assets/release/4.2.7/charles-proxy-4.2.7-win64.msi) and install Charles.
+- Open Charles and navigate to **Help > SSL Proxying > Install Charles Root Certificate**.\
+  <img src="https://github.com/justbearcause/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/blob/main/Screenshots/Charles1.jpg?raw=true" width="600" />
+- The **Certificate** window should appear. In this window, click **Install Certificate**.\
+  <img src="https://github.com/justbearcause/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/blob/main/Screenshots/Charles-Certificate-1.jpg?raw=true" width="400" />
+- The **Certificate Import Wizard** window should appear. Select **Local Machine** and press **Next**.\
+  <img src="https://github.com/justbearcause/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/blob/main/Screenshots/Charles-Certificate-2.jpg?raw=true" width="400" />
+- Confirm User Account Control prompt.
+- On the next page, select **Place all certificates in the following store** and click **Browse**.\
+  <img src="https://github.com/justbearcause/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/blob/main/Screenshots/Charles-Certificate-3.jpg?raw=true" width="400" />
+- The **Select Certificate Store** window should appear. Select **Trusted Root Certificate Authorities** in the list, then click **OK** Button, then click **Next** in the Certificate Import Wizard to go to the final step.\
+  <img src="https://github.com/justbearcause/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/blob/main/Screenshots/Charles-Certificate-4.jpg?raw=true" width="400" />
+- On the final step, press **Finish**.\
+  <img src="https://github.com/justbearcause/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/blob/main/Screenshots/Charles-Certificate-5.jpg?raw=true" width="400" />
 
-## Step 2. Install Charles Root Certificate
-![0](https://raw.githubusercontent.com/qnblackcat/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/main/Screenshots/0.png)
-![13](https://raw.githubusercontent.com/qnblackcat/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/main/Screenshots/13.png)
-![456](https://raw.githubusercontent.com/qnblackcat/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/main/Screenshots/456.png)
-![7](https://raw.githubusercontent.com/qnblackcat/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/main/Screenshots/7.png)
-
-_**Congrats! You just installed Charles Proxy Certificate! See the FAQ section for how to remove the Charles Proxy Certificate if you don't need it anymore**_
 ***
 
-
-## Step 3. Create the Breakpoint
-
-_(This is where the fun begins!)_
+## Step 3. Create a breakpoint
 
 ### Step 3.1. Open iTunes & Charles Proxy
-![ikSFiKO-1024x545](https://raw.githubusercontent.com/qnblackcat/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/main/Screenshots/ikSFiKO-1024x545.jpg)
+<img src="https://github.com/justbearcause/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/blob/main/Screenshots/iTunes-Charles-1.jpg?raw=true" width="600" />
 
-### Step 3.2. 
-- Search for the app you want to downgrade. I will get the IPA of **Facebook v161.0** as an example.
-- If the app is removed from AppStore, but still available in your **Purchased tab**: it can be found in **`Account > Purchased`**.
-![6BD0iOX](https://raw.githubusercontent.com/qnblackcat/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/main/Screenshots/6BD0iOX.png) 
+### Step 3.2. Find X (Twitter) App in the Store
+- Enable Apps section in the switcher.\
+  <img src="https://github.com/justbearcause/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/blob/main/Screenshots/iTunes-1.jpg?raw=true" width="400" />\
+  <img src="https://github.com/justbearcause/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/blob/main/Screenshots/iTunes-2.jpg?raw=true" width="400" />
+- Open App Store.\
+  <img src="https://github.com/justbearcause/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/blob/main/Screenshots/iTunes-3.jpg?raw=true" width="400" />
+- Scroll down and open **Top Free Apps** section.\
+  <img src="https://github.com/justbearcause/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/blob/main/Screenshots/iTunes-4.jpg?raw=true" width="400" />
+- Scroll down until you find **X** (Twitter) and click on its icon.\
+  <img src="https://github.com/justbearcause/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/blob/main/Screenshots/iTunes-5.jpg?raw=true" width="400" />
+  
+### Step 3.3. Enable SSL Proxying
+- In iTunes, press **Download** button.
+  iTunes will start a download of the recent version of X. **This is not the version we want**, all we need now is Charles to catch the request iTunes makes when it starts a download.\
+  <img src="https://github.com/justbearcause/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/blob/main/Screenshots/iTunes-6.jpg?raw=true" width="400" />
+- Now select the download in the popup and press **Delete** key on the keyboard twice.\
+  <img src="https://github.com/justbearcause/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/blob/main/Screenshots/iTunes-7.jpg?raw=true" width="400" />
+- Now switch to **Charles**. On the left side of the Charles window you'll see a list of domains.
+- Find a domain that has a form of `p**-buy.itunes.apple.com`, where **`**`** is two random numbers.
+- Right-click on it and select **Enable SSL Proxying**, then clear the list.\
+  <img src="https://github.com/justbearcause/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/blob/main/Screenshots/Charles-8.jpg?raw=true" width="400" />
 
-### Step 3.3. 
-- Select **`Get`** or **`Download`** to download **Facebook**. This is not the version we want so we'll delete it.
-![P1oxyj](https://raw.githubusercontent.com/qnblackcat/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/main/Screenshots/P1oxyj.png)
+### Step 3.4. Enable a breakpoint
+- We need to download the app again. If you go back to iTunes, you will likely see that Download button is greyed out. If this is the case, try refreshing the page by pressing `Ctrl+R`. If it didn't help, check if the X app is present in the **Library** tab. If it is, select it, press **Delete** key on the keyboard and confirm the deletion, then go back to the **AppStore** tab.
+- Press the **Download** button again and cancel the download like you did in the previous step.
+- Now switch to **Charles**.
+- On the left side of the Charles window you'll see a list of domains. Find an entry that has a form of `p**-buy.itunes.apple.com` and expand it until you see a `buyProduct` element. Select it and then press the pencil icon on the toolbar.\
+  <img src="https://github.com/justbearcause/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/blob/main/Screenshots/Charles-9.jpg?raw=true" width="400" />
+- A second `buyProduct` element should appear in the tree. Click **Execute** button on the bottom right.\
+  <img src="https://github.com/justbearcause/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/blob/main/Screenshots/Charles-10.jpg?raw=true" width="400" />
+- A third `buyProduct` element should appear in the tree. Right click on it and select **Breakpoints**.\
+  <img src="https://github.com/justbearcause/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/blob/main/Screenshots/Charles-11.jpg?raw=true" width="400" />
+- Clear the list again by pressing the first icon on the toolbar.
 
-### Step 3.4. 
-- Now, go to **Charles Proxy**, we'll see a list of domains. Find a domain that has a form of **`p**-buy.itunes.apple.com`**, **`**`** is two-random numbers. As you can see in the picture below, mine is **`p31-buy.itunes.apple.com`**. Right-click on it and select **`Enable SSL Proxying`**
-![Z8ONSO](https://raw.githubusercontent.com/qnblackcat/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/main/Screenshots/Z8wONSO-1024x546.jpg)
-
-### Step 3.5. Enable the Breakpoint
-- Go back to iTunes and download Facebook again. This is still not a version we want, so we'll delete it.
-- In **Charles Proxy**, you'll see a new **`p31-buy.itunes.apple.com`** address **with the blue icon at the top of the line**. Expand this address to **`buyProduct`**, and then follow the pictures:
-![zH1Lh](https://raw.githubusercontent.com/qnblackcat/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/main/Screenshots/zH1LhHX-1024x548.png)
-![O3gX5](https://raw.githubusercontent.com/qnblackcat/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/main/Screenshots/O3gX5aL.png)
-![kypYS2J](https://raw.githubusercontent.com/qnblackcat/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/main/Screenshots/kypYS2J.png)
-![hBwS](https://raw.githubusercontent.com/qnblackcat/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/main/Screenshots/hBwSXT7.png)
 ***
 
+## Step 4. Find the old version of the application
+- We need to download the app again. Go to **iTunes** and refresh the page, like you did earlier.
+- Press the Download button again, but this time you **don't** have to stop and delete the download.
+- Go back to **Charles**. Now you should see that Charles catched and paused the request made by iTunes. Press **Execute**.\
+  <img src="https://github.com/justbearcause/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/blob/main/Screenshots/Charles-12.jpg?raw=true" width="400" />
+- Now Charles should show you a response it got from the server. Go to **Edit Response** tab (on the top), then **XML Text** tab (on then bottom).\
+  <img src="https://github.com/justbearcause/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/blob/main/Screenshots/Charles-13.jpg?raw=true" width="400" />
+- Scroll the content area until you find a key named `softwareVersionExternalIdentifiers`. Select an array that follows the key and copy it to the clipboard by pressing `Ctrl+C` then press the **Abort** button.\
+  <img src="https://github.com/justbearcause/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/blob/main/Screenshots/Charles-14.jpg?raw=true" width="400" />
+- Open Notepad or any other text editor and paste the text from the clipboard. It's the full list of application version IDs that iTunes is aware of.\
+  <img src="https://github.com/justbearcause/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/blob/main/Screenshots/Notepad-15.jpg?raw=true" width="400" />
+- Go back to **iTunes**. If you see an ongoing operation on top of the window, click the **x** button and then refresh the page like before.\
+  <img src="https://github.com/justbearcause/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/blob/main/Screenshots/iTunes-21.jpg?raw=true" width="400" />
 
-## Step 4. Get the old version of the appplication (IPA)
-### _Note: You only need to do all the previous steps once. Next time you downgrade an app, you'll start from this step (Step 4)._
-- Go back to iTunes and download Facebook, again! **Charles Proxy** will automatically show the **Breakpoint popup**. 
-- **Edit Request** > **XML Text** > Replace the current `Build Number Version` of Facebook with the `Build Number` of **Facebook v161.0** (`826067593`) > **Execute** > **Execute**. Now iTunes will download **Facebook v161.0** instead of the latest version.
-- In some cases, the **Breakpoint popup** can appear twice, simply edit the current `Build Number Version` like above one more time and you're good to go.
-
-> But how do I know the `Build Number` of **Facebook v161.0** is `826067593`? - Read [Preparing Section](#preparing) carefully!
-
-![WiiLTTo](https://raw.githubusercontent.com/qnblackcat/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/main/Screenshots/WiiLTTo.png)
-![fb161](https://raw.githubusercontent.com/qnblackcat/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/main/Screenshots/qv0mzsp.png)
 ***
 
+## Step 5. Download the old version of the application
 
-## Step 5. Install the IPA
-- The IPA will be saved at **`C:\Users\<User>\Music\iTunes\iTunes Media\Mobile Applications`**. _**Tips:**_ Open the IPA in Explorer by going to **`iTunes > Library > Right-click on the app > Open in Explorer`**
-![GcbjR](https://raw.githubusercontent.com/qnblackcat/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/main/Screenshots/GcbjRwn.png)
+_(Finally!)_
 
-### 5.1. Windows
+- First, we need to determine which version we want to download. Unfortunately, there's no way to match the version IDs we got to the actual human-readable versions (like 9.91), but at least version IDs are incremental and the array we've got is pre-sorted, so now we can download as many versions as we want and check their versions after the download finished.
+- Let's choose a version from the list. I already know that the version with ID = `848783955` corresponds to version 9.10.1 and it doesn't work (as of August 12, 2023) and simply asks for update when launched. And version with ID = `852780561` corresponds to version 9.33 and it works just fine (as of August 12, 2023). You can select any version you want from the list and try it yourself, just replace the `852780561` in this following steps with the version ID you choosed.
+- Go to **iTunes** and refresh the page, like you did earlier.
+- Press the Download button again,  but this time you **don't** have to stop and delete the download.
+- Go back to **Charles**. Now you should see that Charles catched and paused the request made by iTunes. Go to **Edit Request** tab (on the top), then **XML Text** (on the bottom).
+- Replace the ID after the `AppExtVrsId` key to the one you choose (e.g. `852780561`) and then press **Execute**.\
+  <img src="https://github.com/justbearcause/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/blob/main/Screenshots/Charles-16.jpg?raw=true" width="400" />
+- Now Charles should show you a response it got from the server. We **don't** have to modify a response, so just press **Execute** again.\
+  <img src="https://github.com/justbearcause/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/blob/main/Screenshots/Charles-17.jpg?raw=true" width="400" />
+- Now iTunes should download an old version of the application.\
+  <img src="https://github.com/justbearcause/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/blob/main/Screenshots/iTunes-22.jpg?raw=true" width="400" />
+- Wait until download is finished, then open the following folder:\
+  `C:\Users\<YOUR USER>\Music\iTunes\iTunes Media\Mobile Applications`
+  In this folder you should find the downloaded application with the human-readable versions in its name.\
+    <img src="https://github.com/justbearcause/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/blob/main/Screenshots/Explorer-18.jpg?raw=true" width="400" />
 
-_**It is a pain in the neck to install the IPA via iTunes. That's why we will not iTunes. AppManager & iMazing are good alternatives. 3uTools is not recommended**_
+## Step 6. Install the old version of the application
 
-- **[AppManager](https://github.com/kawaiizenbo/AppManager) (recommended)**: Plug your device into your PC, click on **`Install new`** and select the IPA.
-![image](https://user-images.githubusercontent.com/52943116/160886525-868d249d-d1e8-431b-af16-215696f4eaec.png)
-
-- **iMazing**: **`Manage Apps > Device Tab > Drag & Drop the IPA into the window.`** _(Note: iMazing **does** work on Windows, but I'm too lazy to setup iMazing on Windows just for 2 screenshots)._
-![iMazing](https://raw.githubusercontent.com/qnblackcat/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/main/Screenshots/IMG_1832.PNG)
-
-- **3uTools (may not safe, not recommended)**: Drag & drop the IPA into the Apps tab.
-![3u](https://raw.githubusercontent.com/qnblackcat/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/main/Screenshots/1534755814062064808.gif)
-
-### macOS
-Simply Airdrop the IPA from your Mac to your device. You can use [Apple configurator 2](https://apps.apple.com/us/app/apple-configurator-2/id1037126344) to install the IPA as well.
-
-![Mac](https://raw.githubusercontent.com/qnblackcat/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/main/Screenshots/Screen%20Shot%202021-09-20%20at%2009.22.02.png)
-
-
-
-# IV. FAQ
-## 1. I can't see the Build number of the version I need on Tool Lantency?
-- The easiest way to get the Build version number is to ask a jailbroken user who has AppStore++ installed. Just tell them the app & the version you need to get.
-- If you have nobody to ask, you could try this way. It will take a while depending on your luck. https://github.com/qnblackcat/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/issues/8#issuecomment-1272240225
-- Still can't find the Build version number? Well, open a new issue, I will help you.
-
-## 2. Can I share the IPA with my friends?
-- **Absolutely yes!** However, you have to give them the IPA **with the Apple ID you used to get the IPA**. Why? Because the first time they open your app, they will be asked to enter the purchased ID. That's how iOS works.
-- Don't want to share your main account? Use a clone Apple ID then.
-
-## 3. Can Apple revoke my IPA?
-- **No, they can't!** If you use iOS long enough, I'm sure you remember that time when we can download IPA directly from iTunes. Our IPAs came from iTunes just like an app from AppStore. Apple can do nothing about it.
-
-## 4. Can the app be able to receive push notifications?
-- Again, the IPA comes from iTunes, which is the same as AppStore... So **YES**, it works like an app from AppStore.
-
-## 5. I got errors installing the IPA via AltStore/Sideloadly/...
-- The IPA is **encrypted** with your purchase ID. You **CAN NOT** sideload it. I mentioned how to install the ipa in [Step 4](#step-4-get-the-old-version-of-the-appplication-ipa).
-_(FYI: you only sideload **decrypted** IPA. You DO NOT sideload **encrypted** IPA!)._
-
-## 6. Can I install the IPA from iTunes via Filza?
-- Yeah, you can install the IPA using Filza.
-
-## 7. What happens if I use another Apple ID?
-- You have to re-start the process from [Step 3](#step-3-create-the-breakpoint).
-
-## 8. Apps crash on openning?
-- Most likely the version is too old and not compatible with your current iOS/iPadOS anymore.
-
-## 9. How do I remove Charles Proxy Certificates?
-- Open **Run** window (Windows + R) and type in `certmgr.msc`
-- In the **certmgr** window, go to **Trusted Root Certification Authorities** - **Certificates** - Right click on **Charles Proxy CA** certificate and delete it. 
-![image](https://user-images.githubusercontent.com/52943116/144748946-435e88eb-56da-4574-b112-795f63440e1c.png)
-
-## 10. Is it possible to install the IPA without a computer?
-- **Yes, it is 100% possible!**. However, it requires more additional Steps. I may add it in the future. 
+- [Download](https://github.com/kawaiizenbo/AppManager) **AppManager**, extract the downloaded archive and run `AppManager.exe`.
+- Plug your device into your PC.
+- In the `AppManager` click on **Install new** button and select the IPA file you downloaded from iTunes.\
+  <img src="https://github.com/justbearcause/How-to-Downgrade-apps-on-AppStore-with-iTunes-and-Charles-Proxy/blob/main/Screenshots/AppManager-19.jpg?raw=true" width="400" />
+- AppManager will transfer the file to your device and perform the installation. This process isn't fast, wait for the success message to appear in the log.
+- Now your old version of Twitter app is installed and ready to use. **Congratulations!**
+- If you want to try another version, you should restart from [Step 5. Download the old version of the application](#step-5-download-the-old-version-of-the-application).
